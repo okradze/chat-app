@@ -4,15 +4,15 @@ import Input from '../Input/Input'
 
 const LoginForm = () => {
     const firebase = useContext(FirebaseContext)
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         try {
             e.preventDefault()
-            firebase.login(email, password).then(() => {
-                console.log('logged in')
-            })
+            const user = await firebase.signup(name, email, password)
+            console.log(user)
         } catch (e) {
             console.log(e)
         }
@@ -20,6 +20,14 @@ const LoginForm = () => {
 
     return (
         <form onSubmit={onSubmit}>
+            <Input
+                id="name"
+                onChange={e => setName(e.target.value)}
+                value={name}
+                type="text"
+                placeholder="name"
+                autoComplete="off"
+            />
             <Input
                 id="email"
                 onChange={e => setEmail(e.target.value)}

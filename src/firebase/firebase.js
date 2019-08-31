@@ -22,6 +22,19 @@ class Firebase {
     login(email, password) {
         return this.auth.signInWithEmailAndPassword(email, password)
     }
+
+    async signup(displayName, email, password) {
+        const user = await this.auth.createUserWithEmailAndPassword(
+            email,
+            password,
+        )
+
+        await user.user.updateProfile({
+            displayName,
+        })
+
+        return user
+    }
 }
 
 export default Firebase
