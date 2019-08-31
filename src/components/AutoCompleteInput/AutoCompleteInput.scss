@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.AutoCompleteInput {
+    position: relative;
+    min-width: 30rem;
+
+    &__item-overview {
+        background-color: $white;
+        position: absolute;
+        top: calc(100% + 1rem);
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-shadow: $shadow-light;
+    }
+    &__item {
+        width: 100%;
+        list-style: none;
+        padding: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $bg;
+        }
+    }
+}

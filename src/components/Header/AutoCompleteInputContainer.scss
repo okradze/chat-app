@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.search-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__user {
+        display: flex;
+        align-items: center;
+        color: $grey;
+
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin-right: 1rem;
+        }
+    }
+    &__icon {
+        fill: $grey;
+        width: 2rem;
+        height: 2rem;
+    }
+}

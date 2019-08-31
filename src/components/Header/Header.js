@@ -1,10 +1,10 @@
 import React from 'react'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import Dropdown from '../Dropdown/Dropdown'
-import SearchSvg from '../../svg/Search'
 import Button from '../Button/Button'
 import withAuth from '../withAuth/withAuth'
 import withFirebase from '../withFirebase/withFirebase'
+import AutoCompleteInputContainer from './AutoCompleteInputContainer'
 import './Header.scss'
 
 const Header = ({ user, firebase }) => {
@@ -15,10 +15,7 @@ const Header = ({ user, firebase }) => {
     return (
         <header className="header-wrapper">
             <div className="container header">
-                <div className="input-group">
-                    <input className="input" type="text" placeholder="Search" />
-                    <SearchSvg className="input-group__icon" />
-                </div>
+                <AutoCompleteInputContainer />
                 <div className="header__right">
                     <ProfilePicture photoURL={user.photoURL} />
                     <Dropdown
