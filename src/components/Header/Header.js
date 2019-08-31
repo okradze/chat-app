@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import Triangle from '../Triangle/Triangle'
+import Button from '../Button/Button'
 import withAuth from '../withAuth/withAuth'
 import withFirebase from '../withFirebase/withFirebase'
 import './Header.scss'
@@ -15,13 +16,13 @@ const Header = ({ user, firebase }) => {
             <input className="input" type="text" placeholder="search" />
             <div className="header__right">
                 <ProfilePicture photoURL={user.photoURL} />
-                <button type="button">
+                <Button className="header__button" color="transparent">
                     {user.displayName}
                     <Triangle direction="bottom" />
-                </button>
-                <button type="button" onClick={onLogout}>
+                </Button>
+                <Button color="transparent" onClick={onLogout}>
                     Log Out
-                </button>
+                </Button>
             </div>
         </header>
     )

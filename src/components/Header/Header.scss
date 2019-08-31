@@ -4,11 +4,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 0;
     background-color: $white;
     box-shadow: $shadow-bottom-light;
 
     &__right {
         display: flex;
         align-items: center;
+    }
+    &__button {
+        font-size: 1.5rem;
+        font-weight: 400;
     }
 }
