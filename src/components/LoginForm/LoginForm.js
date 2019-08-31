@@ -1,21 +1,14 @@
-import React, { useState, useContext } from 'react'
-import FirebaseContext from '../Firebase/Context'
+import React, { useState } from 'react'
 import Input from '../Input/Input'
+import withFirebase from '../withFirebase/withFirebase'
 
-const LoginForm = () => {
-    const firebase = useContext(FirebaseContext)
+const LoginForm = ({ firebase }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const onSubmit = e => {
-        try {
-            e.preventDefault()
-            firebase.login(email, password).then(() => {
-                console.log('logged in')
-            })
-        } catch (e) {
-            console.log(e)
-        }
+    const onSubmit = async e => {
+        e.preventDefault()
+        await firebase.login(email, password)
     }
 
     return (
@@ -42,4 +35,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default withFirebase(LoginForm)

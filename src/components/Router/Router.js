@@ -9,7 +9,7 @@ const Router = () => (
     <BrowserRouter>
         <Firebase>
             <Switch>
-                <Route path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route path="/login" component={LoginForm} />
                 <Route path="/signup" component={SignupForm} />
             </Switch>
