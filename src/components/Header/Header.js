@@ -1,7 +1,9 @@
 import React from 'react'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
+import Triangle from '../Triangle/Triangle'
 import withAuth from '../withAuth/withAuth'
 import withFirebase from '../withFirebase/withFirebase'
+import './Header.scss'
 
 const Header = ({ user, firebase }) => {
     const onLogout = async () => {
@@ -10,20 +12,21 @@ const Header = ({ user, firebase }) => {
 
     return (
         <header className="header">
-            <input type="text" placeholder="search" />
-            {user ? (
+            <input className="input" type="text" placeholder="search" />
+            <div className="header__right">
                 <ProfilePicture photoURL={user.photoURL} />
-            ) : (
-                <p>Loading...</p>
-            )}
-            <button type="button" onClick={onLogout}>
-                Log Out
-            </button>
+                <button type="button">
+                    {user.displayName}
+                    <Triangle direction="bottom" />
+                </button>
+                <button type="button" onClick={onLogout}>
+                    Log Out
+                </button>
+            </div>
         </header>
     )
 }
 
 const HeaderWithAuth = withAuth(Header)
-const HeaderWithFirebase = withFirebase(HeaderWithAuth)
 
-export default HeaderWithFirebase
+export default withFirebase(HeaderWithAuth)

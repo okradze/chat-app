@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Router from './router/Router'
 import * as serviceWorker from './serviceWorker'
+import 'normalize.css'
+import './index.scss'
 
 ReactDOM.render(<Router />, document.getElementById('root'))
 
