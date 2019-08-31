@@ -4,16 +4,43 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
-    background-color: $white;
-    box-shadow: $shadow-bottom-light;
+
+    & .input-group {
+        flex-basis: 30%;
+    }
 
     &__right {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
     }
-    &__button {
+    &__button,
+    &__dropdown-button {
         font-size: 1.5rem;
         font-weight: 400;
+
+        &:focus {
+            outline: none;
+        }
     }
+
+    &__dropdown-button {
+        width: 100%;
+        &:hover {
+            background-color: $bg;
+        }
+    }
+
+    &__button-preview {
+        span {
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+.header-wrapper {
+    width: 100%;
+    padding: 1rem 0;
+    background-color: $white;
+    box-shadow: $shadow-bottom-light;
 }
