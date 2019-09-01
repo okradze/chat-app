@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import Input from '../Input/Input'
+import Button from '../Button/Button'
+import withSpinner from '../withSpinner/withSpinner'
 import withFirebase from '../withFirebase/withFirebase'
 
 const LoginForm = ({ firebase }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    const onSubmit = async e => {
+    const onSubmit = e => {
         e.preventDefault()
-        await firebase.signup(name, email, password)
+        setLoading(true)
+        firebase.signup(name, email, password)
     }
+
+    const ButtonWithLoader = withSpinner(() => 'Sign Up')
 
     return (
         <form onSubmit={onSubmit}>
@@ -19,7 +25,7 @@ const LoginForm = ({ firebase }) => {
                 onChange={e => setName(e.target.value)}
                 value={name}
                 type="text"
-                placeholder="name"
+                placeholder="Enter Full Name"
                 autoComplete="off"
             />
             <Input
@@ -27,7 +33,7 @@ const LoginForm = ({ firebase }) => {
                 onChange={e => setEmail(e.target.value)}
                 value={email}
                 type="text"
-                placeholder="email"
+                placeholder="Enter Email"
                 autoComplete="off"
             />
             <Input
@@ -35,11 +41,13 @@ const LoginForm = ({ firebase }) => {
                 id="password"
                 value={password}
                 type="password"
-                placeholder="password"
+                placeholder="Enter Password"
                 autoComplete="off"
             />
 
-            <button type="submit">Log In</button>
+            <Button color="primary" type="submit">
+                <ButtonWithLoader color="secondary" isLoading={loading} />
+            </Button>
         </form>
     )
 }

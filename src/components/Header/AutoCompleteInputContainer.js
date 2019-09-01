@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import SearchSvg from '../../svg/Search'
 import AutoCompleteInput from '../AutoCompleteInput/AutoCompleteInput'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
-import Button from '../Button/Button'
 import SendSvg from '../../svg/Send'
 import './AutoCompleteInputContainer.scss'
 
@@ -10,7 +9,17 @@ const AutoCompleteInputContainer = () => {
     const [isOpen, setIsOpen] = useState(true)
 
     const renderItem = ({ photoURL, displayName }) => (
-        <span onClick={() => setIsOpen(false)} className="search-item">
+        <span
+            role="button"
+            tabIndex="0"
+            onKeyPress={e => {
+                if (e.which === 13) {
+                    setIsOpen(false)
+                }
+            }}
+            onClick={() => setIsOpen(false)}
+            className="search-item"
+        >
             <div className="search-item__user">
                 <ProfilePicture photoURL={photoURL} />
                 <p>{displayName}</p>

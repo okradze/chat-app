@@ -1,0 +1,71 @@
+@import '../../styles/variables';
+
+.LoginAndSignupPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.LoginAndSignupForm {
+    background-color: $white;
+    border-radius: 4rem;
+    padding: 6rem 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: $shadow-light;
+
+    &__heading {
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+
+        &::after {
+            content: '';
+            display: block;
+            margin: 0 auto;
+            width: 3rem;
+            height: 0.4rem;
+            margin-top: 0.8rem;
+            background-color: $primary;
+        }
+    }
+
+    form {
+        margin: 0 auto;
+        max-width: 30rem;
+    }
+
+    .input {
+        border-radius: 0;
+        border: none;
+        border-bottom: 2px solid $light-grey;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        transition: border-color 0.2s ease-in-out;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+        }
+    }
+
+    &__link {
+        margin-top: 3rem;
+        font-weight: 500;
+        color: $primary;
+
+        &:hover {
+            color: darken($primary, 10%);
+        }
+    }
+
+    .input-group {
+        margin-bottom: 4rem;
+    }
+
+    .button {
+        width: 100%;
+    }
+}

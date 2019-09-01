@@ -16,12 +16,17 @@
     &__item {
         width: 100%;
         list-style: none;
-        padding: 1rem;
-        cursor: pointer;
+    }
+
+    input {
+        padding-left: 4rem;
+        background-color: $bg;
+        border: none;
         transition: background-color 0.2s ease-in-out;
 
-        &:hover {
-            background-color: $bg;
+        &:focus {
+            outline: none;
+            background-color: darken($bg, 2%);
         }
     }
 }

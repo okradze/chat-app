@@ -1,8 +1,8 @@
 .input {
-    background-color: $bg;
+    background-color: $white;
     border-radius: $br-radius;
-    border: none;
-    padding: 0.8rem 4rem;
+    border: 1px solid $light-grey;
+    padding: 0.8rem 2.5rem;
     width: 100%;
 }
 

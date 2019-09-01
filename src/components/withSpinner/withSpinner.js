@@ -1,17 +1,19 @@
 import React from 'react'
 import './Spinner.scss'
 
+const PrimarySpinner = ({ style }) => (
+    <div style={style} className="lds-dual-ring lds-dual-ring--primary" />
+)
+
+const SecondarySpinner = ({ style }) => (
+    <div style={style} className="lds-dual-ring lds-dual-ring--secondary" />
+)
+
 const withSpinner = Component => {
-    const WithSpinner = ({ isLoading, ...props }) => {
+    const WithSpinner = ({ isLoading, style, color, ...props }) => {
         if (!isLoading) return <Component {...props} />
-        return (
-            <div class="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        )
+        if (!color) return <PrimarySpinner style={style} />
+        return <SecondarySpinner style={style} />
     }
     return WithSpinner
 }

@@ -33,7 +33,7 @@ class Firebase {
             password,
         )
 
-        return user.user.updateProfile({
+        await user.user.updateProfile({
             displayName,
         })
     }
