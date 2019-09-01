@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
                     return User.doesNotExist({ email })
                 },
                 message() {
-                    return 'email_taken'
+                    return 'EMAIL_TAKEN'
                 },
             },
         },
