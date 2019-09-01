@@ -2,7 +2,7 @@
 
 .AutoCompleteInput {
     position: relative;
-    min-width: 30rem;
+    width: 100%;
 
     &__item-overview {
         background-color: $white;
@@ -22,6 +22,7 @@
         padding-left: 4rem;
         background-color: $bg;
         border: none;
+        font-size: 1.5rem;
         transition: background-color 0.2s ease-in-out;
 
         &:focus {
