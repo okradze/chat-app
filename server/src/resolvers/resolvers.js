@@ -1,9 +1,9 @@
+import Query from './Query/Query'
+import Mutation from './Mutation/Mutation'
+
 const resolvers = {
-    Query: {
-        users() {
-            return []
-        },
-    },
+    Query,
+    Mutation,
 }
 
 export default resolvers
