@@ -1,5 +1,7 @@
+import auth from './auth'
+
 const Query = {
-    users() {},
+    auth,
 }
 
 export default Query

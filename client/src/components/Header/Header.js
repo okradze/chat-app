@@ -7,7 +7,7 @@ import withFirebase from '../withFirebase/withFirebase'
 import AutoCompleteInputContainer from './AutoCompleteInputContainer'
 import './Header.scss'
 
-const Header = ({ user, firebase }) => {
+const Header = ({ auth: { user }, firebase }) => {
     const onLogout = async () => {
         await firebase.logout()
     }

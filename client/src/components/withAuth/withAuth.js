@@ -3,9 +3,9 @@ import AuthContext from '../Auth/Context'
 
 const withAuth = Component => {
     const WithAuth = ({ ...props }) => {
-        const user = useContext(AuthContext)
+        const auth = useContext(AuthContext)
 
-        return <Component user={user} {...props} />
+        return <Component auth={auth} {...props} />
     }
     return WithAuth
 }

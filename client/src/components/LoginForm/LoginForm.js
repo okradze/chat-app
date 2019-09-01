@@ -1,18 +1,46 @@
 import React, { useState } from 'react'
+import { useMutation } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
-import withFirebase from '../withFirebase/withFirebase'
 import withSpinner from '../withSpinner/withSpinner'
+import withAuth from '../withAuth/withAuth'
 
-const LoginForm = ({ firebase }) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
+const LOGIN = gql`
+    mutation Login($email: String!, $password: String!) {
+        login(data: { email: $email, password: $password }) {
+            _id
+            fullName
+            email
+        }
+    }
+`
 
-    const onSubmit = async e => {
+const LoginForm = ({ auth }) => {
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: '',
+    })
+    const [login, { loading, error }] = useMutation(LOGIN, {
+        variables: loginData,
+        onCompleted(data) {
+            if (data) {
+                const { login } = data
+                auth.setUser(login)
+            }
+        },
+    })
+
+    const onSubmit = e => {
         e.preventDefault()
-        setLoading(true)
-        await firebase.login(email, password)
+        login()
+    }
+
+    const onChange = (value, path) => {
+        setLoginData({
+            ...loginData,
+            [path]: value,
+        })
     }
 
     const ButtonWithSpinner = withSpinner(() => 'Login')
@@ -21,20 +49,22 @@ const LoginForm = ({ firebase }) => {
         <form onSubmit={onSubmit}>
             <Input
                 id="email"
-                onChange={e => setEmail(e.target.value)}
-                value={email}
+                onChange={e => onChange(e.target.value, 'email')}
+                value={loginData.email}
                 type="text"
                 placeholder="Enter Email"
                 autoComplete="off"
             />
             <Input
-                onChange={e => setPassword(e.target.value)}
+                onChange={e => onChange(e.target.value, 'password')}
                 id="password"
-                value={password}
+                value={loginData.password}
                 type="password"
                 placeholder="Enter Password"
                 autoComplete="off"
             />
+
+            <p className="error">{error && 'Incorrect Details'}</p>
 
             <Button type="submit" color="primary">
                 <ButtonWithSpinner color="secondary" isLoading={loading} />
@@ -43,4 +73,4 @@ const LoginForm = ({ firebase }) => {
     )
 }
 
-export default withFirebase(LoginForm)
+export default withAuth(LoginForm)
