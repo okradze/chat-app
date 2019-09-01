@@ -1,25 +1,38 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
+const userSchema = new mongoose.Schema(
+    {
+        firstName: {
+            type: String,
+            required: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            validate: {
+                validator(email) {
+                    return User.doesNotExist({ email })
+                },
+                message() {
+                    return 'email_taken'
+                },
+            },
+        },
+        password: {
+            type: String,
+            required: true,
+        },
     },
-    lastName: {
-        type: String,
-        required: true,
+    {
+        timestamps: true,
     },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-})
+)
 
 userSchema.pre('save', async function() {
     if (this.isModified('password')) {
@@ -31,6 +44,10 @@ userSchema.pre('save', async function() {
 userSchema.virtual('fullName').get(function() {
     return `${this.firstName} ${this.lastName}`
 })
+
+userSchema.statics.doesNotExist = async function(options) {
+    return (await this.where(options).countDocuments) === 0
+}
 
 const User = mongoose.model('User', userSchema)
 

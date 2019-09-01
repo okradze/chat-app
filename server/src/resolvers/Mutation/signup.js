@@ -3,11 +3,7 @@ import User from '../../models/User'
 const signup = async (parent, { data }) => {
     // validate
 
-    // create
-
-    const user = new User(data)
-
-    await user.save()
+    const user = await new User(data).save()
 
     return user
 }
