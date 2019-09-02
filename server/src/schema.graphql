@@ -28,7 +28,7 @@ type Message {
     _id: ID!
     user: User!
     chat: Chat!
-    text: String!
+    message: String!
 }
 
 input SignupInput {
@@ -49,5 +49,5 @@ input ChatInput {
 
 input MessageInput {
     chat: ID!
-    text: String!
+    message: String!
 }

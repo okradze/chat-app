@@ -26,7 +26,7 @@ export const createChatSchema = object().shape({
 
 export const createMessageSchema = object().shape({
     chat: string().required(),
-    text: string()
+    message: string()
         .min(1)
         .required(),
 })

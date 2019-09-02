@@ -3,9 +3,9 @@ import getUserId from '../../utils/getUserId'
 import { createChatSchema } from '@chat/common'
 
 const createChat = async (parent, { data }, { req }) => {
-    const userId = getUserId(req)
-
     const uniqueUsers = [...new Set(data.users)]
+
+    const userId = getUserId(req)
 
     await createChatSchema.validate({ users: uniqueUsers })
 
@@ -13,7 +13,7 @@ const createChat = async (parent, { data }, { req }) => {
         users: [...uniqueUsers, userId],
     }).save()
 
-    return await chat.populate('users').execPopulate()
+    return chat
 }
 
 export default createChat
