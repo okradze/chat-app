@@ -1,18 +1,25 @@
 type Query {
     auth: User!
     users: [User!]!
+    chats: [Chat!]!
 }
 
 type Mutation {
     signup(data: SignupInput!): User!
     login(data: LoginInput!): User!
     logout: Boolean!
+    createChat(data: ChatInput!): Chat!
 }
 
 type User {
     _id: ID!
     fullName: String!
     email: String!
+}
+
+type Chat {
+    _id: ID!
+    users: [User!]!
 }
 
 input SignupInput {
@@ -25,4 +32,8 @@ input SignupInput {
 input LoginInput {
     email: String!
     password: String!
+}
+
+input ChatInput {
+    users: [ID!]!
 }
