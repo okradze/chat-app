@@ -19,7 +19,14 @@ export const signupSchema = object().shape({
 })
 
 export const createChatSchema = object().shape({
-    users: array(string())
+    users: array(string().required())
         .min(1)
         .max(50),
+})
+
+export const createMessageSchema = object().shape({
+    chat: string().required(),
+    text: string()
+        .min(1)
+        .required(),
 })
