@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { withRouter } from 'react-router-dom'
 import AuthContext from './Context'
 
-const Auth = ({ children }) => {
-    const [user, setUser] = useState()
+const Auth = ({ children, user: userState }) => {
+    const [user, setUser] = useState(userState)
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>

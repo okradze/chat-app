@@ -6,14 +6,18 @@
     align-items: center;
 
     & .AutoCompleteInput {
-        flex-basis: 30%;
+        flex-grow: 1;
+        max-width: 40rem;
     }
 
     &__right {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        flex-shrink: 0;
+        margin-left: 1rem;
     }
+
     &__button,
     &__dropdown-button {
         font-size: 1.5rem;

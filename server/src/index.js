@@ -50,7 +50,7 @@ const startServer = async () => {
                         },
                     }
                 } catch (e) {
-                    throw new AuthenticationError('no_auth')
+                    throw new AuthenticationError('NO_AUTH')
                 }
             },
         },
