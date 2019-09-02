@@ -3,7 +3,6 @@ import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
-import withSpinner from '../withSpinner/withSpinner'
 import withAuth from '../withAuth/withAuth'
 
 const LOGIN = gql`
@@ -21,12 +20,19 @@ const LoginForm = ({ auth }) => {
         email: '',
         password: '',
     })
-    const [login, { loading, error }] = useMutation(LOGIN, {
+    const [errorClassName, setErrorClassName] = useState('input')
+
+    const [login, { loading }] = useMutation(LOGIN, {
         variables: loginData,
         onCompleted(data) {
             if (data) {
                 const { login } = data
                 auth.setUser(login)
+            }
+        },
+        onError(error) {
+            if (error.message.endsWith('NO_USER')) {
+                setErrorClassName('input input-error')
             }
         },
     })
@@ -43,8 +49,6 @@ const LoginForm = ({ auth }) => {
         })
     }
 
-    const ButtonWithSpinner = withSpinner(() => 'Login')
-
     return (
         <form onSubmit={onSubmit}>
             <Input
@@ -54,6 +58,7 @@ const LoginForm = ({ auth }) => {
                 type="text"
                 placeholder="Enter Email"
                 autoComplete="off"
+                className={errorClassName}
             />
             <Input
                 onChange={e => onChange(e.target.value, 'password')}
@@ -62,12 +67,11 @@ const LoginForm = ({ auth }) => {
                 type="password"
                 placeholder="Enter Password"
                 autoComplete="off"
+                className={errorClassName}
             />
 
-            <p className="error">{error && 'Incorrect Details'}</p>
-
-            <Button type="submit" color="primary">
-                <ButtonWithSpinner color="secondary" isLoading={loading} />
+            <Button disabled={loading} type="submit" color="primary">
+                {loading ? 'Logging In...' : 'Log In'}
             </Button>
         </form>
     )

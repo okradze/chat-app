@@ -10,8 +10,8 @@
 
 .LoginAndSignupForm {
     background-color: $white;
-    border-radius: 4rem;
-    padding: 6rem 2rem;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
     max-width: 500px;
     margin: 0 auto;
     box-shadow: $shadow-light;
@@ -32,16 +32,11 @@
         }
     }
 
-    form {
-        margin: 0 auto;
-        max-width: 30rem;
-        width: 100%;
-    }
-
     .input {
         border-radius: 0;
         border: none;
-        border-bottom: 2px solid $light-grey;
+        border-bottom: 2px solid $primary;
+        background-color: $bg;
         padding-left: 1rem;
         padding-right: 1rem;
         transition: border-color 0.2s ease-in-out;
@@ -49,6 +44,19 @@
         &:focus {
             outline: none;
             border-color: $primary;
+        }
+    }
+
+    form {
+        max-width: 30rem;
+        margin: 0 auto;
+    }
+
+    .input-error {
+        border-color: $error;
+
+        &:focus {
+            border-color: $error;
         }
     }
 

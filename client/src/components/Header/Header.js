@@ -1,16 +1,28 @@
 import React from 'react'
+import { useMutation } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import Dropdown from '../Dropdown/Dropdown'
 import Button from '../Button/Button'
 import withAuth from '../withAuth/withAuth'
-import withFirebase from '../withFirebase/withFirebase'
+import { PrimarySpinner } from '../Spinner/Spinner'
 import AutoCompleteInputContainer from './AutoCompleteInputContainer'
 import './Header.scss'
 
-const Header = ({ auth: { user }, firebase }) => {
-    const onLogout = async () => {
-        await firebase.logout()
+const LOGOUT = gql`
+    mutation {
+        logout
     }
+`
+
+const Header = ({ auth: { setUser, user } }) => {
+    const [logout, { loading }] = useMutation(LOGOUT, {
+        onCompleted: data => {
+            if (data.logout === true) {
+                setUser()
+            }
+        },
+    })
 
     return (
         <header className="header-wrapper">
@@ -20,13 +32,14 @@ const Header = ({ auth: { user }, firebase }) => {
                     <ProfilePicture photoURL={user.photoURL} />
                     <Dropdown
                         className="header__button header__button-preview"
-                        text={user.displayName}
+                        text={user.fullName}
                     >
                         <Button
                             className="header__dropdown-button"
                             color="transparent"
-                            onClick={onLogout}
+                            onClick={() => logout()}
                         >
+                            {loading && <PrimarySpinner />}
                             Log Out
                         </Button>
                     </Dropdown>
@@ -36,6 +49,4 @@ const Header = ({ auth: { user }, firebase }) => {
     )
 }
 
-const HeaderWithAuth = withAuth(Header)
-
-export default withFirebase(HeaderWithAuth)
+export default withAuth(Header)

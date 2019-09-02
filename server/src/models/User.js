@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
             validate: {
                 validator(email) {
                     return User.doesNotExist({ email })
@@ -46,7 +45,8 @@ userSchema.virtual('fullName').get(function() {
 })
 
 userSchema.statics.doesNotExist = async function(options) {
-    return (await this.where(options).countDocuments) === 0
+    const count = await this.where(options).countDocuments()
+    return count === 0
 }
 
 const User = mongoose.model('User', userSchema)
