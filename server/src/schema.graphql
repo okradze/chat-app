@@ -12,6 +12,10 @@ type Mutation {
     createMessage(data: MessageInput!): Message!
 }
 
+type Subscription {
+    message: Message!
+}
+
 type User {
     _id: ID!
     fullName: String!

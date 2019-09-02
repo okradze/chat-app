@@ -9,6 +9,12 @@ const createChat = async (parent, { data }, { req }) => {
 
     await createChatSchema.validate({ users: uniqueUsers })
 
+    const chatExists = await Chat.find({ users: { $all: uniqueUsers } })
+
+    if (chatExists) {
+        throw new Error('CHAT_EXISTS')
+    }
+
     const chat = await new Chat({
         users: [...uniqueUsers, userId],
     }).save()
