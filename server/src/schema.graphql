@@ -9,6 +9,7 @@ type Mutation {
     login(data: LoginInput!): User!
     logout: Boolean!
     createChat(data: ChatInput!): Chat!
+    createMessage(data: MessageInput!): Message!
 }
 
 type User {
@@ -20,6 +21,7 @@ type User {
 type Chat {
     _id: ID!
     users: [User!]!
+    messages: [Message!]!
 }
 
 input SignupInput {
@@ -36,4 +38,9 @@ input LoginInput {
 
 input ChatInput {
     users: [ID!]!
+}
+
+input MessageInput {
+    chat: ID!
+    text: String!
 }
