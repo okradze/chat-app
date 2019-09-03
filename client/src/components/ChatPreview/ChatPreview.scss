@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+
+.ChatPreview {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid $light-grey;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $light-grey;
+    }
+
+    &__user-info {
+        margin: 0 auto 0 1.5rem;
+    }
+
+    &__user-name {
+        color: $dark;
+        margin-bottom: 0.25rem;
+    }
+    &__last-message {
+        margin-top: 0.25rem;
+    }
+
+    &__last-message,
+    &__date {
+        color: $grey;
+        font-size: 1.4rem;
+    }
+}

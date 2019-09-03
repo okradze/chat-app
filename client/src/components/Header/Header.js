@@ -29,7 +29,11 @@ const Header = ({ auth: { setUser, user } }) => {
             <div className="container header">
                 <AutoCompleteInputContainer />
                 <div className="header__right">
-                    <ProfilePicture photoURL={user.photoURL} />
+                    <ProfilePicture
+                        width="4rem"
+                        height="4rem"
+                        photoURL="https://randomuser.me/api/portraits/men/9.jpg"
+                    />
                     <Dropdown
                         className="header__button header__button-preview"
                         text={user.fullName}

@@ -21,10 +21,13 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
-    background-color: $bg;
 }
 
 img {
     display: block;
     max-width: 100%;
+}
+
+h1 {
+    margin: 0;
 }

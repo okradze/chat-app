@@ -20,14 +20,14 @@
 
     input {
         padding-left: 4rem;
-        background-color: $bg;
+        background-color: $light-grey;
         border: none;
         font-size: 1.5rem;
         transition: background-color 0.2s ease-in-out;
 
         &:focus {
             outline: none;
-            background-color: darken($bg, 2%);
+            background-color: darken($light-grey, 2%);
         }
     }
 }

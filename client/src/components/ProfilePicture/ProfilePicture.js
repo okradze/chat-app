@@ -1,10 +1,17 @@
 import React from 'react'
-import './ProfilePicture.scss'
 
-const ProfilePicture = ({ photoURL }) => (
-    <div className="profile-picture">
-        <img className="profile-picture__img" src={photoURL} alt="" />
-    </div>
+const ProfilePicture = ({ photoURL, width, height, ...otherProps }) => (
+    <img
+        style={{
+            width,
+            height,
+            borderRadius: '50%',
+        }}
+        className="ProfilePicture"
+        src={photoURL}
+        alt=""
+        {...otherProps}
+    />
 )
 
 export default ProfilePicture

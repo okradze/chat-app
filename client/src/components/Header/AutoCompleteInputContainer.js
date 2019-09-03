@@ -6,7 +6,7 @@ import SendSvg from '../../svg/Send'
 import './AutoCompleteInputContainer.scss'
 
 const AutoCompleteInputContainer = () => {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     const renderItem = ({ photoURL, displayName }) => (
         <span

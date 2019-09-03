@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.ChatsPreview {
+    width: 25%;
+
+    &__title-container {
+        background-color: $light-grey;
+        padding: 1rem 1.5rem;
+    }
+
+    &__title {
+        font-size: 3rem;
+        font-weight: 400;
+    }
+}
