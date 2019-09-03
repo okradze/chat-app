@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+
+$msg-br-radius: 15px;
+$margin: 1.5rem;
+
+.Message-wrapper--left {
+    text-align: start;
+
+    .Message__content {
+        margin-left: $margin;
+        border-radius: $msg-br-radius $msg-br-radius $msg-br-radius 0;
+    }
+
+    .Message__content-wrapper {
+        padding-right: $margin;
+    }
+
+    .Message__date {
+        text-align: end;
+    }
+}
+
+.Message-wrapper--right {
+    text-align: end;
+
+    .Message__date {
+        text-align: start;
+    }
+
+    .Message__content-wrapper {
+        padding-left: $margin;
+    }
+
+    .Message__content {
+        background: linear-gradient(to right top, $primary, $linear-primary);
+        color: $white;
+    }
+
+    .Message__content {
+        margin-right: $margin;
+        border-radius: $msg-br-radius 0 $msg-br-radius $msg-br-radius;
+    }
+}
+
+.Message {
+    display: inline-block;
+
+    &__date {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        color: $grey;
+    }
+    &__content-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    &__content {
+        background-color: $light-grey;
+        padding: 1.2rem 2rem;
+    }
+}

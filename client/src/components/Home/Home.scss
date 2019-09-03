@@ -1,0 +1,14 @@
+.home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    & > .container {
+        flex-grow: 1;
+    }
+
+    &__content {
+        display: flex;
+        height: 100%;
+    }
+}

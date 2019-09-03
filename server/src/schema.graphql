@@ -27,6 +27,7 @@ type Chat {
     _id: ID!
     users: [User!]!
     messages: [Message!]!
+    lastMessage: Message!
 }
 
 type Message {

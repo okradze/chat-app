@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.ProfilePicture {
+    position: relative;
+
+    &__img {
+        border-radius: 50%;
+    }
+    &__active {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background-color: #03c03c;
+        box-shadow: 0 0 0 2px $white;
+    }
+}

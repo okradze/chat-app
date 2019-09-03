@@ -8,6 +8,19 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 
+    &--visited {
+        background: linear-gradient(to right top, $primary, $linear-primary);
+
+        .ChatPreview__user-name,
+        .ChatPreview__last-message,
+        .ChatPreview__date {
+            color: $white;
+        }
+        & img {
+            box-shadow: 0 0 0 2px $white;
+        }
+    }
+
     &:hover,
     &:focus {
         background-color: $light-grey;
@@ -18,7 +31,7 @@
     }
 
     &__user-name {
-        color: $dark;
+        font-weight: 500;
         margin-bottom: 0.25rem;
     }
     &__last-message {

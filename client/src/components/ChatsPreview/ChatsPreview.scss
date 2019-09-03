@@ -2,14 +2,24 @@
 
 .ChatsPreview {
     width: 25%;
+    border-right: 1px solid $light-grey;
+    border-left: 1px solid $light-grey;
+
+    &__container {
+        overflow-y: scroll;
+        height: 100%;
+    }
 
     &__title-container {
-        background-color: $light-grey;
-        padding: 1rem 1.5rem;
+        height: 6rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        background-color: #f1f7fa;
     }
 
     &__title {
-        font-size: 3rem;
-        font-weight: 400;
+        font-size: 2.6rem;
+        font-weight: 500;
     }
 }

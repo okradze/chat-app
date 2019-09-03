@@ -1,17 +1,26 @@
 import React from 'react'
+import './ProfilePicture.scss'
 
-const ProfilePicture = ({ photoURL, width, height, ...otherProps }) => (
-    <img
-        style={{
-            width,
-            height,
-            borderRadius: '50%',
-        }}
-        className="ProfilePicture"
-        src={photoURL}
-        alt=""
-        {...otherProps}
-    />
+const ProfilePicture = ({
+    photoURL,
+    isActive,
+    width,
+    height,
+    ...otherProps
+}) => (
+    <figure className="ProfilePicture">
+        <img
+            style={{
+                width,
+                height,
+            }}
+            className="ProfilePicture__img"
+            src={photoURL}
+            alt=""
+            {...otherProps}
+        />
+        {isActive && <span className="ProfilePicture__active" />}
+    </figure>
 )
 
 export default ProfilePicture
