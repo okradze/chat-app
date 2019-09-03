@@ -3,7 +3,7 @@ import Chat from '../../models/Chat'
 import Message from '../../models/Message'
 import getUserId from '../../utils/getUserId'
 
-const createMessage = async (parent, { data }, { req }) => {
+const createMessage = async (parent, { data }, { req, pubsub }) => {
     await createMessageSchema.validate(data)
 
     const userId = getUserId(req)
@@ -18,6 +18,8 @@ const createMessage = async (parent, { data }, { req }) => {
         ...data,
         user: userId,
     }).save()
+
+    pubsub.publish(`message:${data.chat}`, { message: message })
 
     return message
 }
