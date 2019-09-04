@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ChatsPreview from '../ChatsPreview/ChatsPreview'
-import ChatOverview from '../ChatOverview/ChatOverview'
+import Chat from '../Chat/Chat'
 import HomeContext from './Context'
 
 const HomeContent = () => {
@@ -10,7 +10,7 @@ const HomeContent = () => {
         <HomeContext.Provider value={{ visitedChat, setVisitedChat }}>
             <div className="home__content">
                 <ChatsPreview />
-                {visitedChat && <ChatOverview />}
+                {visitedChat && <Chat />}
             </div>
         </HomeContext.Provider>
     )

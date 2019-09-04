@@ -1,14 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSubscription } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import './ChatPreview.scss'
 
-const ChatPreview = ({ fullName, lastMessage, createdAt, onClick }) => {
-    const [isVisited, setIsVisited] = useState(false)
+const MESSAGE_SUBSCRIPTION = gql`
+    subscription Message($chatId: ID!) {
+        message(chatId: $chatId) {
+            _id
+            message
+            user {
+                _id
+            }
+            createdAt
+        }
+    }
+`
 
-    const formatDate = createdAt => {
+const ChatPreview = ({
+    _id,
+    fullName,
+    lastMessage,
+    createdAt,
+    onClick,
+    isVisited,
+}) => {
+    // useSubscription(MESSAGE_SUBSCRIPTION, {
+    //     variables: {
+    //         chatId: _id,
+    //     },
+    //     onSubscriptionData(data) {
+    //         console.log(data)
+    //     },
+    // })
+
+    const formatDate = date => {
         const now = new Date()
-        const date = new Date(createdAt)
-
         if (date.getDate() === now.getDate()) {
             return `${date.getHours()}:${date.getMinutes()}`
         }
@@ -19,12 +46,10 @@ const ChatPreview = ({ fullName, lastMessage, createdAt, onClick }) => {
             role="button"
             tabIndex="0"
             onClick={() => {
-                setIsVisited(true)
                 onClick()
             }}
             onKeyPress={e => {
                 if (e.which === 13) {
-                    setIsVisited(true)
                     onClick()
                 }
             }}
@@ -43,7 +68,11 @@ const ChatPreview = ({ fullName, lastMessage, createdAt, onClick }) => {
                 </div>
             </div>
             <time className="ChatPreview__date">
-                {lastMessage ? lastMessage.createdAt : formatDate(createdAt)}
+                {formatDate(
+                    lastMessage
+                        ? new Date(lastMessage.createdAt * 1)
+                        : new Date(createdAt * 1),
+                )}
             </time>
         </div>
     )

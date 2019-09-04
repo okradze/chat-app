@@ -14,6 +14,10 @@ const CHATS = gql`
                 _id
                 fullName
             }
+            lastMessage {
+                createdAt
+                message
+            }
             createdAt
         }
     }
@@ -21,7 +25,7 @@ const CHATS = gql`
 
 const ChatsPreview = ({ auth }) => {
     const [chats, setChats] = useState()
-    const { setVisitedChat } = useContext(HomeContext)
+    const { setVisitedChat, visitedChat } = useContext(HomeContext)
 
     useQuery(CHATS, {
         onCompleted(data) {
@@ -35,7 +39,10 @@ const ChatsPreview = ({ auth }) => {
                 chats.map(({ _id, users, lastMessage, createdAt }, index) => (
                     <ChatPreview
                         key={index}
-                        id={_id}
+                        _id={_id}
+                        isVisited={
+                            visitedChat ? _id === visitedChat._id : false
+                        }
                         setVisitedChat={setVisitedChat}
                         fullName={
                             users.find(user => user._id !== auth.user._id)

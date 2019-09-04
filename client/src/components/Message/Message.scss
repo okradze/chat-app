@@ -5,6 +5,7 @@ $margin: 1.5rem;
 
 .Message-wrapper--left {
     text-align: start;
+    margin-bottom: $margin;
 
     .Message__content {
         margin-left: $margin;
@@ -21,6 +22,7 @@ $margin: 1.5rem;
 }
 
 .Message-wrapper--right {
+    margin-bottom: $margin;
     text-align: end;
 
     .Message__date {
@@ -29,16 +31,18 @@ $margin: 1.5rem;
 
     .Message__content-wrapper {
         padding-left: $margin;
+
+        .ProfilePicture {
+            order: 1;
+        }
     }
 
     .Message__content {
+        order: 0;
         background: linear-gradient(to right top, $primary, $linear-primary);
-        color: $white;
-    }
-
-    .Message__content {
         margin-right: $margin;
         border-radius: $msg-br-radius 0 $msg-br-radius $msg-br-radius;
+        color: $white;
     }
 }
 

@@ -19,7 +19,7 @@ const createMessage = async (parent, { data }, { req, pubsub }) => {
         user: userId,
     }).save()
 
-    chat.lastMessage = message
+    chat.lastMessage = message._id
 
     await chat.save()
 

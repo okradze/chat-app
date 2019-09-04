@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+
+.MessageForm {
+    position: relative;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: none;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    &__send-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $primary;
+    }
+
+    &__textarea {
+        display: block;
+        padding: 2rem;
+        width: 100%;
+        border: 1px solid $light-grey;
+        resize: none;
+        flex-grow: 1;
+    }
+}

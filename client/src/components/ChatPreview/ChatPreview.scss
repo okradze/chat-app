@@ -9,7 +9,11 @@
     transition: background-color 0.2s ease-in-out;
 
     &--visited {
-        background: linear-gradient(to right top, $primary, $linear-primary);
+        background-image: linear-gradient(
+            to right top,
+            $primary,
+            $linear-primary
+        );
 
         .ChatPreview__user-name,
         .ChatPreview__last-message,
