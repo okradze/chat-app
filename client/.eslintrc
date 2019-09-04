@@ -30,7 +30,8 @@
         "react/jsx-one-expression-per-line": "off",
         "one-var": "off",
         "one-var-declaration-per-line": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "no-underscore-dangle": "off"
     },
     "parserOptions": {
         "ecmaVersion": 10,

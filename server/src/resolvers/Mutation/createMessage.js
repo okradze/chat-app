@@ -19,6 +19,10 @@ const createMessage = async (parent, { data }, { req, pubsub }) => {
         user: userId,
     }).save()
 
+    chat.lastMessage = message
+
+    await chat.save()
+
     pubsub.publish(`message:${data.chat}`, { message: message })
 
     return message

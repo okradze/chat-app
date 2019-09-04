@@ -2,6 +2,7 @@ type Query {
     auth: User!
     users: [User!]!
     chats: [Chat!]!
+    messages(chatId: ID!): [Message!]!
 }
 
 type Mutation {
@@ -28,6 +29,7 @@ type Chat {
     users: [User!]!
     messages: [Message!]!
     lastMessage: Message!
+    createdAt: String!
 }
 
 type Message {
@@ -35,6 +37,7 @@ type Message {
     user: User!
     chat: Chat!
     message: String!
+    createdAt: String!
 }
 
 input SignupInput {

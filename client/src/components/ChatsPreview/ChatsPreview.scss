@@ -4,22 +4,7 @@
     width: 25%;
     border-right: 1px solid $light-grey;
     border-left: 1px solid $light-grey;
-
-    &__container {
-        overflow-y: scroll;
-        height: 100%;
-    }
-
-    &__title-container {
-        height: 6rem;
-        display: flex;
-        align-items: center;
-        padding: 0 1.5rem;
-        background-color: #f1f7fa;
-    }
-
-    &__title {
-        font-size: 2.6rem;
-        font-weight: 500;
-    }
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
