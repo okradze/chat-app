@@ -3,9 +3,14 @@
 $msg-br-radius: 15px;
 $margin: 1.5rem;
 
-.Message-wrapper--left {
-    text-align: start;
+.Message-wrapper--left,
+.Message-wrapper--right {
     margin-bottom: $margin;
+    display: flex;
+}
+
+.Message-wrapper--left {
+    justify-content: flex-start;
 
     .Message__content {
         margin-left: $margin;
@@ -22,8 +27,7 @@ $margin: 1.5rem;
 }
 
 .Message-wrapper--right {
-    margin-bottom: $margin;
-    text-align: end;
+    justify-content: flex-end;
 
     .Message__date {
         text-align: start;
@@ -48,6 +52,9 @@ $margin: 1.5rem;
 
 .Message {
     display: inline-block;
+    max-width: 45%;
+    word-wrap: break-word;
+    word-break: break-all;
 
     &__date {
         display: block;

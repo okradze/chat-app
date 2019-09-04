@@ -11,7 +11,8 @@ const ProfilePicture = ({
     <figure className="ProfilePicture">
         <img
             style={{
-                width,
+                minMidth: width,
+                maxWidth: width,
                 height,
             }}
             className="ProfilePicture__img"

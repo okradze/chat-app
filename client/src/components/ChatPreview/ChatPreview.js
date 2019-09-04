@@ -1,44 +1,22 @@
 import React from 'react'
-import { useSubscription } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import './ChatPreview.scss'
 
-const MESSAGE_SUBSCRIPTION = gql`
-    subscription Message($chatId: ID!) {
-        message(chatId: $chatId) {
-            _id
-            message
-            user {
-                _id
-            }
-            createdAt
-        }
-    }
-`
-
 const ChatPreview = ({
-    _id,
     fullName,
     lastMessage,
     createdAt,
     onClick,
     isVisited,
 }) => {
-    // useSubscription(MESSAGE_SUBSCRIPTION, {
-    //     variables: {
-    //         chatId: _id,
-    //     },
-    //     onSubscriptionData(data) {
-    //         console.log(data)
-    //     },
-    // })
-
     const formatDate = date => {
         const now = new Date()
         if (date.getDate() === now.getDate()) {
             return `${date.getHours()}:${date.getMinutes()}`
         }
+    }
+    const formatMessage = (message, max = 30) => {
+        return `${message.substr(0, max)}...`
     }
 
     return (
@@ -64,7 +42,9 @@ const ChatPreview = ({
             <div className="ChatPreview__user-info">
                 <h4 className="ChatPreview__user-name">{fullName}</h4>
                 <div className="ChatPreview__last-message">
-                    {lastMessage ? lastMessage.message : 'Start a conversation'}
+                    {lastMessage
+                        ? formatMessage(lastMessage.message)
+                        : 'Start a conversation'}
                 </div>
             </div>
             <time className="ChatPreview__date">

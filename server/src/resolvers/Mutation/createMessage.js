@@ -23,7 +23,8 @@ const createMessage = async (parent, { data }, { req, pubsub }) => {
 
     await chat.save()
 
-    pubsub.publish(`message:${data.chat}`, { message: message })
+    pubsub.publish(`message:${data.chat}`, { message })
+    pubsub.publish('chat', { chat })
 
     return message
 }
